@@ -85,69 +85,191 @@ function App() {
     return data;
   }, {});
 
+  // useEffect(() => {
+  //   const updatedTeams = initialTeams?.map((team) => {
+  //     const teamName = team?.name?.toLowerCase();
+  //     const newValue = formData[teamName];
+
+  //     if (teamName.startsWith("evos")) {
+  //       // Handle "evos" and "evos2" teams separately
+  //       const [match1, match2] = newValue || [0, 0]; // Default to [0, 0] if newValue is undefined
+  //       let updatedTeam = { ...team };
+
+  //       // Check if it's the "evos" team
+  //       if (teamName === "evos") {
+  //         if (match1 !== "") {
+  //           if (match1 == 2) {
+  //             updatedTeam = {
+  //               ...updatedTeam,
+  //               match_win: updatedTeam.match_win + 1,
+  //               game_win: updatedTeam.game_win + 2,
+  //             };
+  //           } else if (match1 >= 0 && match1 < 2) {
+  //             updatedTeam = {
+  //               ...updatedTeam,
+  //               match_lose: updatedTeam.match_lose + 1,
+  //               game_lose: updatedTeam.game_lose + 2,
+  //             };
+  //           }
+  //         }
+
+  //         if (match2 !== "") {
+  //           if (match2 == 2) {
+  //             updatedTeam = {
+  //               ...updatedTeam,
+  //               match_win: updatedTeam.match_win + 1,
+  //               game_win: updatedTeam.game_win + 2,
+  //             };
+  //           } else if (match2 >= 0 && match2 < 2) {
+  //             updatedTeam = {
+  //               ...updatedTeam,
+  //               match_lose: updatedTeam.match_lose + 1,
+  //               game_lose: updatedTeam.game_lose + 2,
+  //             };
+  //           }
+  //         }
+  //       }
+  //       return updatedTeam;
+  //     } else if (newValue !== "") {
+  //       //! kalau menang (input == 2)
+  //       if (newValue == 2) {
+  //         return {
+  //           ...team,
+  //           match_win: team.match_win + 1,
+  //           game_win: team.game_win + 2,
+  //         };
+  //       }
+
+  //       //! kalau kalah
+  //       if (newValue >= 0 && newValue < 2) {
+  //         return {
+  //           ...team,
+  //           match_lose: team.match_lose + 1,
+  //           game_lose: team.game_lose + 2,
+  //         };
+  //       }
+  //     }
+
+  //     return team;
+  //   });
+
+  //   sortTeam(updatedTeams);
+  //   setTeams(updatedTeams);
+  // }, [formData]);
+
   useEffect(() => {
     const updatedTeams = initialTeams?.map((team) => {
       const teamName = team?.name?.toLowerCase();
       const newValue = formData[teamName];
 
+      // Helper function to calculate the new data based on match result
+      const calculateNewData = (matchResult, enemyResult) => {
+        const newData = {
+          match_win: matchResult === 2 ? 1 : 0,
+          match_lose: matchResult === 2 ? 0 : 1,
+          game_win: matchResult,
+          game_lose: enemyResult ? enemyResult : 0,
+        };
+
+        return newData;
+      };
+
       if (teamName.startsWith("evos")) {
         // Handle "evos" and "evos2" teams separately
-        const [match1, match2] = newValue || [0, 0]; // Default to [0, 0] if newValue is undefined
+        const [match1, match2] = Array.isArray(newValue) ? newValue : ["", ""]; // Default to ["", ""] if newValue is not an array
         let updatedTeam = { ...team };
 
-        // Check if it's the "evos" team
-        if (teamName === "evos") {
-          if (match1 !== "") {
-            if (match1 == 2) {
-              updatedTeam = {
-                ...updatedTeam,
-                match_win: updatedTeam.match_win + 1,
-                game_win: updatedTeam.game_win + 2,
-              };
-            } else if (match1 >= 0 && match1 < 2) {
-              updatedTeam = {
-                ...updatedTeam,
-                match_lose: updatedTeam.match_lose + 1,
-                game_lose: updatedTeam.game_lose + 2,
-              };
-            }
-          }
+        // Define the base values
+        let baseGameWin = updatedTeam.game_win;
+        let baseGameLose = updatedTeam.game_lose;
 
-          if (match2 !== "") {
-            if (match2 == 2) {
-              updatedTeam = {
-                ...updatedTeam,
-                match_win: updatedTeam.match_win + 1,
-                game_win: updatedTeam.game_win + 2,
-              };
-            } else if (match2 >= 0 && match2 < 2) {
-              updatedTeam = {
-                ...updatedTeam,
-                match_lose: updatedTeam.match_lose + 1,
-                game_lose: updatedTeam.game_lose + 2,
-              };
-            }
-          }
+        // Update based on match1 result if it's a number
+        if (typeof match1 === "number") {
+          const newData = calculateNewData(match1, formData["onic"]);
+          updatedTeam = {
+            ...updatedTeam,
+            match_win: updatedTeam.match_win + newData.match_win,
+            match_lose: updatedTeam.match_lose + newData.match_lose,
+            game_win: baseGameWin + newData.game_win,
+            game_lose:
+              baseGameLose + (newData.game_lose ? newData.game_lose : 0),
+          };
+
+          // Update the base values
+          baseGameWin = updatedTeam.game_win;
+          baseGameLose = updatedTeam.game_lose;
         }
+
+        // Update based on match2 result if it's a number
+        if (typeof match2 === "number") {
+          const newData = calculateNewData(match2, formData["btr"]);
+          updatedTeam = {
+            ...updatedTeam,
+            match_win: updatedTeam.match_win + newData.match_win,
+            match_lose: updatedTeam.match_lose + newData.match_lose,
+            game_win: baseGameWin + newData.game_win,
+            game_lose:
+              baseGameLose + (newData.game_lose ? newData.game_lose : 0),
+          };
+        }
+
         return updatedTeam;
-      } else if (newValue !== "") {
-        //! kalau menang (input == 2)
-        if (newValue == 2) {
-          return {
-            ...team,
-            match_win: team.match_win + 1,
-            game_win: team.game_win + 2,
-          };
+      } else if (typeof newValue === "number") {
+        // Calculate the new data based on the numeric value
+
+        let enemyValue = "";
+        switch (teamName) {
+          case "rrq":
+            enemyValue = "dewa";
+            break;
+          case "dewa":
+            enemyValue = "rrq";
+            break;
+          case "rbl":
+            enemyValue = "geek";
+            break;
+          case "geek":
+            enemyValue = "rbl";
+            break;
+          case "aura":
+            enemyValue = "ae";
+            break;
+          case "ae":
+            enemyValue = "aura";
+            break;
+          case "onic":
+            enemyValue = "evos";
+            break;
+          case "btr":
+            enemyValue = "evos2";
+            break;
+          default:
+            enemyValue = "";
+            break;
         }
 
-        //! kalau kalah
-        if (newValue >= 0 && newValue < 2) {
-          return {
-            ...team,
-            match_lose: team.match_lose + 1,
-            game_lose: team.game_lose + 2,
-          };
-        }
+        const evosArray = formData["evos"];
+        const evos1index = evosArray[0];
+        const evos2index = evosArray[1];
+
+        const newData = calculateNewData(
+          newValue,
+          teamName == "onic"
+            ? evos1index
+            : teamName == "btr"
+            ? evos2index
+            : formData[enemyValue]
+        );
+
+        return {
+          ...team,
+          match_win: team.match_win + newData.match_win,
+          match_lose: team.match_lose + newData.match_lose,
+          game_win: team.game_win + newData.game_win,
+          game_lose: newData.game_lose
+            ? team.game_lose + newData.game_lose
+            : team.game_lose,
+        };
       }
 
       return team;
