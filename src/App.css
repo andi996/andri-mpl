@@ -2,10 +2,10 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 12px 2rem;
-  text-align: center;
-  background-image: url("./haha.jpg");
+  background-image: url("/haha.png");
   background-size: cover;
   background-repeat: no-repeat;
+  text-align: center;
 }
 
 .bg {

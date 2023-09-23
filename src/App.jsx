@@ -282,7 +282,7 @@ function App() {
 
   return (
     <div className="main-container">
-      <div src={haha} alt="bg" className="bg"></div>
+      {/* <img src="/haha.png" alt="bg" className="bg"></img> */}
       <div
         style={{
           fontSize: "18px",
