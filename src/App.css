@@ -8,6 +8,10 @@
   background-repeat: no-repeat;
 }
 
+.bg {
+  position: absolute;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

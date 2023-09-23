@@ -6,6 +6,7 @@ import "./App.css";
 import TableStandings from "./component/table-standings";
 import BottomInfo from "./component/bottom-info";
 import { initialTeams } from "./component/data";
+import haha from "./assets/haha.jpg";
 
 function sortTeam(val) {
   val?.sort((a, b) => {
@@ -281,6 +282,7 @@ function App() {
 
   return (
     <div className="main-container">
+      <div src={haha} alt="bg" className="bg"></div>
       <div
         style={{
           fontSize: "18px",
