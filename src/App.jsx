@@ -247,19 +247,37 @@ function App() {
           </div>
           <div className="match">
             <div className="wrapper-img-input">
-              <img src="./rbl.png" alt="rbl" width={40} height={40} />
+              <img
+                src="./rbl.png"
+                alt="rbl"
+                width={40}
+                height={40}
+                className="img-team"
+              />
 
               <div className="result-text">1</div>
             </div>
             <div>-</div>
             <div className="wrapper-img-input">
               <div className="result-text">2</div>
-              <img src="./geek.png" alt="geek" width={40} height={40} />
+              <img
+                src="./geek.png"
+                alt="geek"
+                width={40}
+                height={40}
+                className="img-team"
+              />
             </div>
           </div>
           <div className="match">
             <div className="wrapper-img-input">
-              <img src="./aura.png" alt="aura" width={40} height={40} />
+              <img
+                src="./aura.png"
+                alt="aura"
+                width={40}
+                height={40}
+                className="img-team"
+              />
               <input
                 type="text"
                 id="aura"
@@ -283,12 +301,24 @@ function App() {
                 onChange={handleInputChange}
                 maxLength={1}
               />
-              <img src="./ae.png" alt="ae" width={40} height={40} />
+              <img
+                src="./ae.png"
+                alt="ae"
+                width={40}
+                height={40}
+                className="img-team"
+              />
             </div>
           </div>
           <div className="match">
             <div className="wrapper-img-input">
-              <img src="./evos.png" alt="evos" width={40} height={40} />
+              <img
+                src="./evos.png"
+                alt="evos"
+                width={40}
+                height={40}
+                className="img-team"
+              />
               <input
                 type="text"
                 id="evos"
@@ -312,7 +342,13 @@ function App() {
                 onChange={handleInputChange}
                 maxLength={1}
               />
-              <img src="./onic.png" alt="onic" width={40} height={40} />
+              <img
+                src="./onic.png"
+                alt="onic"
+                width={40}
+                height={40}
+                className="img-team"
+              />
             </div>
           </div>
         </div>
@@ -329,7 +365,13 @@ function App() {
           </div>
           <div className="match">
             <div className="wrapper-img-input">
-              <img src="./btr.png" alt="btr" width={40} height={40} />
+              <img
+                src="./btr.png"
+                alt="btr"
+                width={40}
+                height={40}
+                className="img-team"
+              />
               <input
                 type="text"
                 id="btr"
@@ -353,12 +395,24 @@ function App() {
                 onChange={handleInputChange}
                 maxLength={1}
               />
-              <img src="./evos.png" alt="evos" width={40} height={40} />
+              <img
+                src="./evos.png"
+                alt="evos"
+                width={40}
+                height={40}
+                className="img-team"
+              />
             </div>
           </div>
           <div className="match">
             <div className="wrapper-img-input">
-              <img src="./rrq.png" alt="rrq" width={40} height={40} />
+              <img
+                src="./rrq.png"
+                alt="rrq"
+                width={40}
+                height={40}
+                className="img-team"
+              />
               <input
                 type="text"
                 id="rrq"
@@ -382,7 +436,13 @@ function App() {
                 onChange={handleInputChange}
                 maxLength={1}
               />
-              <img src="./dewa.png" alt="dewa" width={40} height={40} />
+              <img
+                src="./dewa.png"
+                alt="dewa"
+                width={40}
+                height={40}
+                className="img-team"
+              />
             </div>
           </div>
         </div>

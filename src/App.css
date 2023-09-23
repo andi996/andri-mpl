@@ -154,3 +154,8 @@
     font-size: 10px;
   }
 }
+
+
+.img-team {
+  object-fit: contain;
+}
