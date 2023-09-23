@@ -85,78 +85,6 @@ function App() {
     return data;
   }, {});
 
-  // useEffect(() => {
-  //   const updatedTeams = initialTeams?.map((team) => {
-  //     const teamName = team?.name?.toLowerCase();
-  //     const newValue = formData[teamName];
-
-  //     if (teamName.startsWith("evos")) {
-  //       // Handle "evos" and "evos2" teams separately
-  //       const [match1, match2] = newValue || [0, 0]; // Default to [0, 0] if newValue is undefined
-  //       let updatedTeam = { ...team };
-
-  //       // Check if it's the "evos" team
-  //       if (teamName === "evos") {
-  //         if (match1 !== "") {
-  //           if (match1 == 2) {
-  //             updatedTeam = {
-  //               ...updatedTeam,
-  //               match_win: updatedTeam.match_win + 1,
-  //               game_win: updatedTeam.game_win + 2,
-  //             };
-  //           } else if (match1 >= 0 && match1 < 2) {
-  //             updatedTeam = {
-  //               ...updatedTeam,
-  //               match_lose: updatedTeam.match_lose + 1,
-  //               game_lose: updatedTeam.game_lose + 2,
-  //             };
-  //           }
-  //         }
-
-  //         if (match2 !== "") {
-  //           if (match2 == 2) {
-  //             updatedTeam = {
-  //               ...updatedTeam,
-  //               match_win: updatedTeam.match_win + 1,
-  //               game_win: updatedTeam.game_win + 2,
-  //             };
-  //           } else if (match2 >= 0 && match2 < 2) {
-  //             updatedTeam = {
-  //               ...updatedTeam,
-  //               match_lose: updatedTeam.match_lose + 1,
-  //               game_lose: updatedTeam.game_lose + 2,
-  //             };
-  //           }
-  //         }
-  //       }
-  //       return updatedTeam;
-  //     } else if (newValue !== "") {
-  //       //! kalau menang (input == 2)
-  //       if (newValue == 2) {
-  //         return {
-  //           ...team,
-  //           match_win: team.match_win + 1,
-  //           game_win: team.game_win + 2,
-  //         };
-  //       }
-
-  //       //! kalau kalah
-  //       if (newValue >= 0 && newValue < 2) {
-  //         return {
-  //           ...team,
-  //           match_lose: team.match_lose + 1,
-  //           game_lose: team.game_lose + 2,
-  //         };
-  //       }
-  //     }
-
-  //     return team;
-  //   });
-
-  //   sortTeam(updatedTeams);
-  //   setTeams(updatedTeams);
-  // }, [formData]);
-
   useEffect(() => {
     const updatedTeams = initialTeams?.map((team) => {
       const teamName = team?.name?.toLowerCase();
@@ -320,29 +248,12 @@ function App() {
           <div className="match">
             <div className="wrapper-img-input">
               <img src="./rbl.png" alt="rbl" width={40} height={40} />
-              <input
-                type="text"
-                id="rbl"
-                name="rbl"
-                className="input-text"
-                placeholder="input"
-                value={formData.rbl}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+
+              <div className="result-text">1</div>
             </div>
             <div>-</div>
             <div className="wrapper-img-input">
-              <input
-                type="text"
-                id="geek"
-                name="geek"
-                className="input-text"
-                placeholder="input"
-                value={formData.geek}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+              <div className="result-text">2</div>
               <img src="./geek.png" alt="geek" width={40} height={40} />
             </div>
           </div>

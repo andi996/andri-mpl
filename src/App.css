@@ -90,6 +90,15 @@
   gap: 12px;
 }
 
+.result-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  width: 50px;
+  border: 1px solid tomato;
+}
+
 .input-text {
   max-width: 50px;
   font-size: 24px;
