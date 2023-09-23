@@ -278,29 +278,11 @@ function App() {
                 height={40}
                 className="img-team"
               />
-              <input
-                type="text"
-                id="aura"
-                name="aura"
-                className="input-text"
-                placeholder="input"
-                value={formData.aura}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+              <div className="result-text">2</div>
             </div>
             <div>-</div>
             <div className="wrapper-img-input">
-              <input
-                type="text"
-                id="ae"
-                name="ae"
-                className="input-text"
-                placeholder="input"
-                value={formData.ae}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+              <div className="result-text">1</div>
               <img
                 src="./ae.png"
                 alt="ae"
