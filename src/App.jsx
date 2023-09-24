@@ -301,29 +301,11 @@ function App() {
                 height={40}
                 className="img-team"
               />
-              <input
-                type="text"
-                id="evos"
-                name="evos"
-                className="input-text"
-                placeholder="input"
-                value={formData.evos[0]}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+               <div className="result-text">1</div>
             </div>
             <div>-</div>
             <div className="wrapper-img-input">
-              <input
-                type="text"
-                id="onic"
-                name="onic"
-                className="input-text"
-                placeholder="input"
-                value={formData.onic}
-                onChange={handleInputChange}
-                maxLength={1}
-              />
+            <div className="result-text">2</div>
               <img
                 src="./onic.png"
                 alt="onic"
